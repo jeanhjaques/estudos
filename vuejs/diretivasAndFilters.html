@@ -1,0 +1,71 @@
+<!-- versão de desenvolvimento, inclui avisos úteis no console  -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<header>
+    <style>
+        .purple {
+            background-color: purple;
+        }
+
+        .blue {
+            background-color: blue;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+
+        .green {
+            background-color: green;
+        }
+    </style>
+</header>
+
+<div id="app">
+    <h1 v-pre>{{ titulo }}</h1> <!-- Ignora o código vue implementado na renderização -->
+    <h1 v-once>{{ titulo }}</h1> <!-- Renderiza apenas uma vez, impedindo mudanças -->
+    <h1>{{ titulo }}</h1>
+    <h2 v-text="subtitulo"></h2> <!-- diretiva para texto -->
+    <p v-html="link"></p> <!-- diretiva para html (recomendado somente para links seguros) -->
+    <button v-on:click="alterarTitulo">Alterar Titulo</button> <!-- diretiva para métodos com o evento onclick-->
+    <hr>
+    <input type="text" v-on:input="myClass = $event.target.value">
+    <!-- diretiva para métodos com o evento de entrada, valor digitado é salvo em myClass -->
+    <p v-bind:class="myClass">Classe CSS: {{ myClass }}</p> <!-- linka o CSS com o nome da classe presente em myclass-->
+    <hr>
+    <!-- MVVM Model View, View Model; Model = data, View = visão -->
+    <input type="text" v-model="titulo"> <!-- Muda a data titulo da implementação Vue-->
+
+    <input type="text" v-model="novoNome">
+    <button v-on:click="adicionarNome"> Adicionar Nome</button>
+    <ul>
+        <li v-for="nome in nomes">{{nome | capitalizar}}</li> <!-- Exibe valores do vetor usando for e filtra-->
+    </ul>
+
+
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            titulo: 'Hello World',
+            subtitulo: 'Subtitulo',
+            link: '<span>Teste<span>',
+            myClass: '',
+            novoNome: '',
+            nomes: []
+        },
+        methods: {
+            alterarTitulo: function () {
+                this.titulo = 'Estou aprendendo Vue.js!'
+            },
+            adicionarNome: function () {
+                this.nomes.push(this.novoNome),
+                    this.novoNome = '';
+            }
+        },
+        filters: {
+            capitalizar: function (value) {
+                return value.toUpperCase();
+            }
+        }
+    })
+</script>

@@ -1,0 +1,26 @@
+<!-- aula 11 -->
+<!-- versão de desenvolvimento, inclui avisos úteis no console  -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+        <input type="text" v-model="mensagem">
+        <p v-if="digitando">Digitando</p>
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            mensagem: '',
+            digitando: '',
+        },
+        watch: {
+            mensagem(novoValor, antigoValor){
+                this.digitando = true;
+                setTimeout(() => {
+                    this.digitando = false;
+                }, 2000)
+            }
+        }
+    })
+</script>

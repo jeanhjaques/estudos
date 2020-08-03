@@ -1,0 +1,44 @@
+<!-- aula 11 -->
+<!-- versão de desenvolvimento, inclui avisos úteis no console  -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <p v-if='mostrar'>Oba! Você está me vendo</p>
+    <p v-else>Eu estou visível?</p>
+    <p v-show='mostrar'>Ainda estou por aqui?</p> <!-- Como um if, mas utiliza display: none-->
+    <button @click="mostrar = !mostrar">Mostrar / Esconder</button>
+
+    <br>
+    <hr>
+
+    <!-- Chamando vetor pelo indice-->
+    <ul>
+        <li>{{paises[0].nome}}</li>
+    </ul>
+    <hr>
+    <!-- Chamando vetor usando a diretiva for-->
+    <ul>
+        <li v-for='pais in paises'>{{pais.nome}}</li>
+    </ul>
+    <hr>
+    <!-- Chamando vetor usando a diretiva for + indice-->
+    <ul>
+        <li v-for='(pais, index) in paises'>{{index}} - {{pais.nome}} - GDP {{pais.gdp}}</li>
+    </ul>
+
+
+</div>
+
+<script>
+    new Vue({
+        el: '#app',
+        data: {
+            mostrar: true,
+            paises: [{ nome: 'Venezuela', gdp: 1 },
+            { nome: 'Brasil', gdp: 20 },
+            { nome: 'Japão', gdp: 30 },
+            { nome: 'Estados Unidos', gdp: 40 }
+            ]
+        }
+    })
+</script>

@@ -1,0 +1,33 @@
+<!-- aula 11 -->
+<!-- versão de desenvolvimento, inclui avisos úteis no console  -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <h1>{{titulo}}</h1>
+    <arcade-jogo></arcade-jogo>
+    <arcade-jogo></arcade-jogo>
+</div>
+
+<script>
+    Vue.component('arcade-jogo', {
+        data: function(){
+            return{
+                jogos: [
+                    { nome: 'Street Fighter 2'},
+                    { nome: 'SNK vs Capcom: Chaos'},
+                    { nome: 'The King of fighters 98'},
+                    { nome: 'The King of fighters 2002'}
+                ]
+            }
+        },
+        template:`<div><div class="jogo" v-for="jogo in jogos">
+                    <p>{{jogo.nome}}</p>
+                  </div></div>`,
+    })
+    new Vue({
+        el: '#app',
+        data: {
+            titulo: 'Meus Jogos Favoritos'
+        },
+    })
+</script>
