@@ -1,0 +1,26 @@
+<!-- versão de desenvolvimento, inclui avisos úteis no console  -->
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+
+<div id="app">
+    <componente-pai></componente-pai>
+</div>
+
+<script>
+    Vue.component('componentePai', {
+        template:   `<div><p>Texto do componente pai</p>
+                        <componente-filho></componente-filho>
+                    </div>`
+    })
+
+    Vue.component('componenteFilho', {
+        template:   `<div><p>Texto do componente filho</p></div>`
+    })
+
+    new Vue({
+        el: '#app',
+        component: [
+            'componentepai',
+            'componentefilho'
+        ]
+    })
+</script>
